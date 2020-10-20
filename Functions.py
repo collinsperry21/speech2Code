@@ -3,6 +3,14 @@ import speech_recognition as sr
 
 filename = ""
 
+
+#to be able to correct input things inside a print statement like print(x)
+def print_in_file():
+
+
+
+
+
 #Must call this first.
 def openFile():
     r = sr.Recognizer()

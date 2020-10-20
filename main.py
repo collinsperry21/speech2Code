@@ -47,6 +47,9 @@ while (1):
             MyText = r.recognize_google(audio2)
             MyText = MyText.lower()
 
+            #if(MyText == "print"):
+
+
 
 
 
