@@ -5,6 +5,7 @@
 import speech_recognition as sr
 import Functions as F
 import os
+import Listen as l
 import sys as s
 
 
@@ -47,22 +48,30 @@ while (1):
             MyText = r.recognize_google(audio2)
             MyText = MyText.lower()
 
-            #if(MyText == "print"):
-
-
+            if(MyText == "print"):
+                print("Going in to print")
+                #need some way to print things in a string or variables
+                F.print_in_file()
+                continue
 
 
 
             #user must call a this first pretty much always
             if(MyText == "open file"):
                 open_file = F.openFile()
+                print("")
                 continue
+
 
             #user can only call runfile after file has opened and run too
             if (MyText == "run file"):
-                print("Which file do you want to run?")
-                os.system(open_file)
+                print("Running file....")
+                #runs the file the user has chosen
+                if(len(open_file) != 0):
 
+                    os.system(open_file)
+                else:
+                    print("You cannot run a file prior to creating one, call open file and write some code in it first.")
 
             #Voice command to stop running.
             if(MyText == "end speech to code" or MyText ==  "and speech to code"):

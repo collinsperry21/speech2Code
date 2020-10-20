@@ -1,11 +1,36 @@
 import speech_recognition as sr
-
-
+import Listen as l
+import re
 filename = ""
+
+
+
+
+
 
 
 #to be able to correct input things inside a print statement like print(x)
 def print_in_file():
+    print("Is the thing you want to print a string?")
+    isitString = l.listen()
+    print(isitString)
+    # if it is a string it needs to have double quotes.
+    if (isitString == "yes"):
+        print("Enter your string to be printed.")
+        print_text = l.listen()
+        # print("hello")
+        print_text = "\n" + "print(\"" + print_text + "\")"
+        f = open(filename, "a")
+        f.write(print_text)
+
+
+    # if its not a string it should not have double quotes.
+    if (isitString == "no"):
+        print("Enter your non-string to be printed.")
+        print_text = l.listen()
+        f = open(filename, "a")
+        print_text = "\n" + "print(" + print_text + ")"
+        f.write(print_text)
 
 
 
@@ -24,15 +49,8 @@ def openFile():
             print("Say your filename")
             # wait for a second to let the recognizer
             # the surrounding noise level
-            r.adjust_for_ambient_noise(source2, duration=0.2)
-
-            # listens for the user's input
-            audio2 = r.listen(source2)
-
-            # Using google to recognize audio
-            MyText = r.recognize_google(audio2)
-            MyText = MyText.lower()
-            "".join(MyText.split())
+            MyText = l.listen()
+            MyText = re.sub(r"\s+", "", MyText, flags=re.UNICODE)
             MyText1 = MyText + ".py"
             f = open(MyText1, "w")
             filename = MyText1
@@ -77,7 +95,7 @@ def variableDeclaration():
             tempVal = r.recognize_google(audio3)
             tempVal = tempVal.lower()
             print("Value: ", tempVal)
-            printText = tempvar + " = " + tempVal
+            printText = "\n" + tempvar + " = " + tempVal
             f = open(filename, "a")
             f.write(printText)
 
