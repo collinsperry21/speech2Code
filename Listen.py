@@ -4,10 +4,6 @@ import speech_recognition as sr
 def listen():
     r = sr.Recognizer()
     try:
-        print("Welcome to speech2Code! Say <HELP> if this is your first time or need a refresher on the functionality.")
-        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-        print("If not, happy coding !\n")
-        print("Waiting for input...")
         # use the microphone as source for input.
         with sr.Microphone() as source2:
 
@@ -25,6 +21,6 @@ def listen():
         print("Could not request results; {0}".format(e))
 
     except sr.UnknownValueError:
-        print("unknown error occured")
+        print("Unknown error occured")
 
     return MyText
