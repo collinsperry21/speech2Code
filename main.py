@@ -3,7 +3,9 @@
 
 
 import speech_recognition as sr
-import pyttsx3
+import Functions as F
+import sys as s
+
 
 # Initialize the recognizer  
 r = sr.Recognizer()
@@ -45,13 +47,18 @@ while (1):
 
 
             #Voice command to stop running.
-            if(MyText == "end speech to text" or MyText ==  "and speech to text"):
-                break;
+            if(MyText == "end speech to code" or MyText ==  "and speech to code"):
+                print("Exiting speech2code...")
+                break
 
             #gonna need to do some string parsing here
             #variable appleseed equals (or equal) 6
-            if (MyText[0:7] == 'variable'):
-                MyText = MyText[0:8]
+
+            if (MyText == 'variable'):
+                print("Entering variable assignment...")
+                varString = F.variableDeclaration()
+                print("Output : ", varString)
+                varFlag = 1
 
             #would like to be able to make variables camelcase
             capital = 'capital'
@@ -70,12 +77,13 @@ while (1):
                 print(MyText)
 
             print("Audio heard: " + MyText)
-            print("variableParse")
 
-            print("variableParse")
 
     except sr.RequestError as e:
         print("Could not request results; {0}".format(e))
 
     except sr.UnknownValueError:
         print("unknown error occured") 
+
+
+
