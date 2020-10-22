@@ -1,5 +1,5 @@
 import speech_recognition as sr
-
+import Functions as f
 
 def listen():
     r = sr.Recognizer()
@@ -17,6 +17,7 @@ def listen():
             # Using google to recognize audio
             MyText = r.recognize_google(audio2)
             MyText = MyText.lower()
+            f.exitMenu(MyText)
     except sr.RequestError as e:
         print("Could not request results; {0}".format(e))
 
