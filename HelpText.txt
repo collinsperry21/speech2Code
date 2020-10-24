@@ -1,12 +1,10 @@
 Guide to navigating speechToCode !
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Voice input will be denoted by v(i)
-"i" will represent the amount of time input is needed
-<print>
-print statements take the form of
-Say your variable:
-v(1)
-Say your value:
-v(2)
-You wrote: v(1) = v(2)
-<open file>
+Stating speec2code
+
+Speech2code will start by asking you for voice input
+
+1. Begin by saying the line "open file" to create or open an existing file
+2. Say the name of the existing file or name of the file you are about to create, if one doesn't exist already
+
+
