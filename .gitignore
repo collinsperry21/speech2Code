@@ -1,0 +1,5 @@
+venv
+README.md
+*.pyc
+*.xml
+*.iml
