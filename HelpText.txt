@@ -4,7 +4,44 @@ Stating speec2code
 
 Speech2code will start by asking you for voice input
 
-1. Begin by saying the line "open file" to create or open an existing file
-2. Say the name of the existing file or name of the file you are about to create, if one doesn't exist already
 
+1. Begin by saying the line "open file" if you wish to create or open an existing file. Speech2code will by default
+open the file "start.py".
+1a. Say the name of the existing file or name of the file you are about to create, if one doesn't exist already
+
+The following list is a menu of options for how you would like to proceed.
+
+A. Exiting speech2code
+B. Write code
+C. Run a file
+D. Read a file
+
+Option A: To exit Speech2Code
+When you see the prompt "Waiting for voice input..."
+Say "end speech to code" to exit
+
+Option B: Write code mode
+When you see the prompt "Waiting for voice input..."
+Say "write"
+This will then trigger several options for you by asking "What would you like to write"? 
+Choose one of the following:
+
+  Option B1: Comment
+    Say "comment" to comment on the current line
+    At the prompt "You are commenting to line#: <#>" say your comment.
+    
+  Option B2: Variable
+    Say "variable" to create a variable
+    At the prompt "Please say your variable name: <varName>" say the desired name for your variable
+    Then, at the following prompt "Value: <inputValue>"  say whatever value you would like to assign to this variable
+  
+  Option B3: Exit the write code mode
+    Say "exit write" to exit the write code mode. 
+    
+Option C: Run the current file
+  When you see the prompt "Waiting for voice input..."
+  Say "run file" to run the file yor are current on.
+
+
+    
 
