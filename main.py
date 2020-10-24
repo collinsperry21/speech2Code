@@ -15,8 +15,8 @@ if o.path.exists("start.py"):
 
 #Create a base working space
 openfile = open("start.py", "w+")
-openfile.write("#This file will self-destruct everytime speech2Code is launched\n")
-openfile.write("#Open/Create a file using \"open file\" \n")
+#openfile.write("#This file will self-destruct everytime speech2Code is launched\n")
+#openfile.write("#Open/Create a file using \"open file\" \n")
 currentfile = openfile.name
 #print(currentfile)
 
@@ -29,6 +29,7 @@ print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Loop infinitely for user to
 # speak
 while 1:
+
     # Current status output
     print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Main Menu~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
     print("Current working file: ", currentfile)
@@ -77,6 +78,11 @@ while 1:
         print(openfile.read())
         continue
 
+    if (MyText == "run file"):
+        f.runFile(currentfile)
+
+    if (MyText == "edit file"):
+        w.editFile(currentfile)
 
 #    would like to be able to make variables camelcase
 #    Ode to Tristan

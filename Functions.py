@@ -1,4 +1,5 @@
 import Listen as l
+import os
 
 
 def helper(filename):
@@ -22,3 +23,13 @@ def exitMenu(exit):
     if exit == "exit":
         print("Emergency exit.")
         exit(1)
+
+def runFile(filename):
+    print("Running file....")
+    # runs the file the user has chosen
+    if (len(filename) != 0):
+        os.system(filename)
+
+
+    else:
+        print("You cannot run a file prior to creating one, call open file and write some code in it first.")

@@ -2,6 +2,7 @@ import speech_recognition as sr
 import Functions as f
 
 def listen():
+    MyText = ""
     r = sr.Recognizer()
     try:
         # use the microphone as source for input.
