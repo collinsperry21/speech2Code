@@ -1,81 +1,99 @@
 # Python program to translate 
-# speech to text and text to speech 
+# speech to text
+
+import Functions as f
+import os as o
+import Listen as l
+import Write as w
+
+filepath = str(o.path.abspath(o.getcwd()))
+
+#Kill any previous start files
+
+if o.path.exists("start.py"):
+    o.remove("start.py")
+
+#Create a base working space
+openfile = open("start.py", "w+")
+openfile.write("#This file will self-destruct everytime speech2Code is launched\n")
+openfile.write("#Open/Create a file using \"open file\" \n")
+currentfile = openfile.name
+#print(currentfile)
 
 
-import speech_recognition as sr
-import pyttsx3
+print("\nWelcome to speech2Code!")
+print("Say <HELP> if this is your first time or need a refresher on the functionality.")
+print("If not, happy coding !\n")
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
-# Initialize the recognizer  
-r = sr.Recognizer()
-mic_list = sr.Microphone.list_microphone_names()
-print(mic_list)
+# Loop infinitely for user to
+# speak
+while 1:
+    # Current status output
+    print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Main Menu~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    print("Current working file: ", currentfile)
+    print("Current working directory: ", o.getcwd())
+    print("Waiting for voice input...")
+    # use the microphone as source for input.
+    MyText = l.listen()
 
-# Function to convert text to 
-# speech
+    # Voice command to stop running.
+    if MyText == "end speech to code" or MyText == "and speech to code":
+        print("Exiting speech2code...")
+        break
 
-#def SpeakText(command):
-#   Initialize the engine
-#   engine = pyttsx3.init()
-#   engine.say(command)
-#   engine.runAndWait()
+#   Helper Function
+    if MyText == 'help':
+        print("Launching <help>...")
+        f.helper(currentfile)
+        continue
+
+#   Variable Assignment Function
+    #if MyText == 'variable':
+     #   print("Entering variable assignment...")
+      #  varString = f.variableDeclaration(currentfile)
+       # print("Wrote to ", openfile.name, " ", varString)
+
+#   Open File Function
+    if MyText == "open file":
+        if currentfile != "start.py":
+            print("Close current file before opening another")
+            print("Currently in ", currentfile)
+            continue
+        print("Entering <open file>...")
+        currentfile = f.openFile()
+
+#   Comment Function
+    if MyText == "write" or MyText == "right" or MyText == "rite":
+        if currentfile == "start.py":
+            print("Warning!")
+            print("You are writing to start.py and this will be deleted on speech2Code's next launch")
+            print("Consider opening another file using <open file> from the menu")
+        print("Entering write for current file... ", currentfile)
+        w.writeFile(currentfile)
+
+    if MyText == "read" or MyText == "reed":
+        print("Reading File...")
+        print(openfile.read())
+        continue
 
 
-# Loop infinitely for user to 
-# speak 
-
-while (1):
-
-    # Exception handling to handle 
-    # exceptions at the runtime 
-    try:
-
-        # use the microphone as source for input. 
-        with sr.Microphone() as source2:
-
-            # wait for a second to let the recognizer 
-            # the surrounding noise level
-            r.adjust_for_ambient_noise(source2, duration=0.2)
-
-            # listens for the user's input  
-            audio2 = r.listen(source2)
-
-            # Using google to recognize audio
-            MyText = r.recognize_google(audio2)
-            MyText = MyText.lower()
-
-
-            #Voice command to stop running.
-            if(MyText == "end speech to text" or MyText ==  "and speech to text"):
-                break;
-
-            #gonna need to do some string parsing here
-            #variable appleseed equals (or equal) 6
-            if (MyText[0:7] == 'variable'):
-                MyText = MyText[0:8]
-
-            #would like to be able to make variables camelcase
-            capital = 'capital'
-            if capital in MyText:
-                someText = MyText.split(" ")
-                print(someText)
-                capIndex = someText.index(capital)
-                print(capIndex)
-                capString = someText[capIndex+1].capitalize()
-                someText[capIndex+1] = capString
-                someText.remove("capital")
-                print("after upper: ")
-                #someText.remove("")
-                print(someText)
-                MyText =  "".join(someText)
-                print(MyText)
-
-            print("Audio heard: " + MyText)
-            print("variableParse")
-
-            print("variableParse")
-
-    except sr.RequestError as e:
-        print("Could not request results; {0}".format(e))
-
-    except sr.UnknownValueError:
-        print("unknown error occured") 
+#    would like to be able to make variables camelcase
+#    Ode to Tristan
+    capital = 'capital'
+    if capital in MyText:
+        someText = MyText.split(" ")
+        print(someText)
+        capIndex = someText.index(capital)
+        print(capIndex)
+        capString = someText[capIndex+1].capitalize()
+        someText[capIndex+1] = capString
+        someText.remove(capital)
+        print("after upper: ")
+        #someText.remove("")
+        print(someText)
+        MyText = "".join(someText)
+        print(MyText)
+#   Resume Useful code
+    print("Finished Parsing: < " + MyText, " >")
+openfile.close()
