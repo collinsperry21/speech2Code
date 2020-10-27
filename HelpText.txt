@@ -9,39 +9,60 @@ Speech2code will start by asking you for voice input
 open the file "start.py".
 1a. Say the name of the existing file or name of the file you are about to create, if one doesn't exist already
 
-The following list is a menu of options for how you would like to proceed.
+The following list is a menu of options for how you could proceed, in no specific order.
 
-A. Exiting speech2code
-B. Write code
-C. Run a file
-D. Read a file
 
-Option A: To exit Speech2Code
+A. Help manual
+B. Exiting speech2code
+C. Write code
+D. Run a file
+E. Read a file 
+F. Open/Create a file
+
+
+Option A: Help manual 
+When you see the prompt "Waiting for voice input..."
+Say "help", and this document will appear
+
+Option B: Exit speech2code
 When you see the prompt "Waiting for voice input..."
 Say "end speech to code" to exit
 
-Option B: Write code mode
+Option C: Write code mode
 When you see the prompt "Waiting for voice input..."
 Say "write"
 This will then trigger several options for you by asking "What would you like to write"? 
 Choose one of the following:
 
-  Option B1: Comment
+  Option C1: Comment
     Say "comment" to comment on the current line
     At the prompt "You are commenting to line#: <#>" say your comment.
     
-  Option B2: Variable
+  Option C2: Variable
     Say "variable" to create a variable
     At the prompt "Please say your variable name: <varName>" say the desired name for your variable
     Then, at the following prompt "Value: <inputValue>"  say whatever value you would like to assign to this variable
   
-  Option B3: Exit the write code mode
+  Option C3: Exit the write code mode
     Say "exit write" to exit the write code mode. 
     
-Option C: Run the current file
+Option D: Run the current file
   When you see the prompt "Waiting for voice input..."
-  Say "run file" to run the file yor are current on.
+  Say "run file" to run the file yor are currently on.
 
+Option E: Read a file
+    When you see the prompt "Waiting for voice input..."
+    Say "read"
+   
+Option F: Open an existing file to work on or create a new one to work on
+  When you see the prompt "Waiting for voice input..."
+  Say "open file" 
+  This will call the openfile() function and display: "Say File Name to open: <inputFileName>"
+  At this point you have these two options: 
+    F1: If you want to open an existing file in your working directory, say its name.
+    F2: If you want to create a new file to begin working on it, just say the name that you would like to call this file,
+       and it will create and open it for you to start working on it
 
+  
     
 
