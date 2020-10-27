@@ -4,11 +4,11 @@ import os
 
 def helper(filename):
     tempfile = filename
-    filename.close()
+    #filename.close()
     theFile = open('HelpText.txt', "r")
     print(theFile.read())
     print("Say exit to return to the main menu")
-    tempfile.open()
+    theFile.close()
 
 
 def openFile():
