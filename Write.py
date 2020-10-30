@@ -89,6 +89,13 @@ def editFile(filename):
 
     print("Resay your edited line: ")
     newLine = l.listen()
+
+
+
+    #need to replace "equals" with "="
+    newLine = find_operator(newLine)
+
+
     string_list[lineNumber1-1] = newLine
     print("Line has been edited...")
 
@@ -99,6 +106,22 @@ def editFile(filename):
         my_file.write(myString)
         my_file.write("\n")
     my_file.close()
+
+
+def find_operator(edited_line):
+    if(edited_line.find("equals")):
+        return edited_line.replace("equals", "=")
+    elif(edited_line.find("plus")):
+        return edited_line.replace("plus", "+")
+    elif(edited_line.find("minus")):
+        return edited_line.replace("minus", "-")
+    elif(edited_line.find("times")):
+        return edited_line.replace("times", "*")
+    elif(edited_line.find("divided")):
+        return edited_line.replace("divided", "/")
+    elif (edited_line.find("modulus")):
+        return edited_line.replace("modulus", "%")
+
 
 def change_to_number(stringy):
 
