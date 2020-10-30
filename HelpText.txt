@@ -1,12 +1,2 @@
 Guide to navigating speechToCode !
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Voice input will be denoted by v(i)
-"i" will represent the amount of time input is needed
-<print>
-print statements take the form of
-Say your variable:
-v(1)
-Say your value:
-v(2)
-You wrote: v(1) = v(2)
-<open file>

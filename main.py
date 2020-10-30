@@ -1,5 +1,5 @@
 # Python program to translate 
-# speech to text
+# speech2Code
 
 import Functions as f
 import os as o
@@ -15,8 +15,8 @@ if o.path.exists("start.py"):
 
 #Create a base working space
 openfile = open("start.py", "w+")
-openfile.write("#This file will self-destruct everytime speech2Code is launched\n")
-openfile.write("#Open/Create a file using \"open file\" \n")
+#openfile.write("# This file will self-destruct everytime speech2Code is launched\n")
+#openfile.write("# ..Open/Create a file using \"<open file>\" \n")
 currentfile = openfile.name
 #print(currentfile)
 
@@ -28,6 +28,7 @@ print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Loop infinitely for user to
 # speak
+# Main Loop
 while 1:
     # Current status output
     print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Main Menu~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
@@ -45,6 +46,7 @@ while 1:
 #   Helper Function
     if MyText == 'help':
         print("Launching <help>...")
+        print("\n")
         f.helper(currentfile)
         continue
 
@@ -60,6 +62,7 @@ while 1:
             print("Close current file before opening another")
             print("Currently in ", currentfile)
             continue
+        openfile.close()
         print("Entering <open file>...")
         currentfile = f.openFile()
 
@@ -70,12 +73,17 @@ while 1:
             print("You are writing to start.py and this will be deleted on speech2Code's next launch")
             print("Consider opening another file using <open file> from the menu")
         print("Entering write for current file... ", currentfile)
+        openfile.close()
         w.writeFile(currentfile)
 
     if MyText == "read" or MyText == "reed":
         print("Reading File...")
         print(openfile.read())
+        openfile.close()
         continue
+
+    if MyText == "run file":
+        f.runFile(currentfile)
 
 
 #    would like to be able to make variables camelcase

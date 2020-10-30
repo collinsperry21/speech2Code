@@ -11,7 +11,7 @@ def writeFile(filename):
     print(file.read())
     # Write Loop
     while 1:
-        print("What would you like to write?")
+        print("What would you like to write? Say <exit write> to exit back to the main menu")
         print("Waiting for input...")
         text = l.listen()
 
@@ -20,13 +20,17 @@ def writeFile(filename):
             file.close()
             break
 
-        if text == "comment" or text == "common" or text =="comments":
+        if text == "comment" or text == "common" or text == "comments":
             print("Commenting...")
             comment(filename)
-        if text == "assign":
+
+        if text == "assign" or text == "a sign":
             print("Entering assignment...")
             assignString = variableDeclaration(filename)
             file.write(assignString)
+            file.write("\n")
+
+        print("Finished parsing <", text, ">")
 
 
 def comment(filename):
@@ -48,12 +52,16 @@ def comment(filename):
 
 
 def variableDeclaration(filename):
-    currentline = len(filename.splitlines()) + 1
+    currentline = len(filename.splitlines())
     print("You are writing to line#:", currentline)
-    print("Please say your variable name: <varName>")
+    print("Please say your variable name:")
     tempvar = l.listen()
-    print("Variable Name: <inputVariable>", tempvar)
-    print("Value: <inputValue>")
+    print("Variable Name:", tempvar)
+    print("Say the value:")
     tempVal = l.listen()
     print("Value: ", tempVal)
     return tempvar + " = " + tempVal
+
+def writeLine(filename):
+    currentline = len(filename.splitlines())
+    print("Say the line you want to write to line #", currentline)
