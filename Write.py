@@ -27,6 +27,15 @@ def writeFile(filename):
             print("Entering variable...")
             assignString = variableDeclaration(filename)
             file.write(assignString)
+            file.write("\n")
+
+        if text == "string":
+            print("Enter the contents of your string")
+            text = l.listen()
+            file.write( "print(" + "\"" + text + "\"" + ")" )
+            print("String has been written too...")
+            file.write("\n")
+
         print("Finished parsing text: " + text)
 
 
@@ -69,10 +78,10 @@ def editFile(filename):
     lineNumber = l.listen()
     print("INPUT HEARD: " + lineNumber)
     lineNumber1 = int(change_to_number(lineNumber))
-    my_file1 = open(filename, 'r+')
+    my_file1 = open(filename, 'r')
     string_list = my_file1.readlines()
     my_file1.close()
-    my_file = open(filename, 'w+')
+    my_file = open(filename, 'w')
     print(len(string_list))
     print("The line number is: " + str(lineNumber1))
     print(type(lineNumber1))
