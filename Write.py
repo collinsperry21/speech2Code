@@ -75,9 +75,26 @@ def variableDeclaration(filename):
 def editFile(filename):
     print("Editing file...." + '\n')
     print("Say the line number of the file you want to edit: ")
-    lineNumber = l.listen()
-    print("INPUT HEARD: " + lineNumber)
-    lineNumber1 = int(change_to_number(lineNumber))
+    count = len(open(filename).readlines())
+    lineNumber1 = l.listen()
+    while (1):
+        try:
+            anInt = int(change_to_number(lineNumber1))
+            print("LOOPING")
+            if(anInt > 0 and anInt < 999):
+                lineNumber1 = anInt
+                break
+        except ValueError:
+            print("Please enter a valid number:")
+            lineNumber1 = l.listen()
+            continue
+
+    lineNumber1 = int(lineNumber1)
+    while( lineNumber1 > count or lineNumber1 < 1 ):
+        print("Please a valid fileline in the file you wish to edit. (1-n)")
+        lineNumber = l.listen()
+
+
     my_file1 = open(filename, 'r')
     string_list = my_file1.readlines()
     my_file1.close()
@@ -103,8 +120,9 @@ def editFile(filename):
     for i in range (len(string_list)):
         myString = string_list[i]
         print(myString)
-        my_file.write(myString)
-        my_file.write("\n")
+        my_file.write(myString + "\n")
+
+
     my_file.close()
 
 

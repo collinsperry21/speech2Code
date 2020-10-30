@@ -81,10 +81,18 @@ while 1:
     if (MyText == "run file"):
         f.runFile(currentfile)
 
+
+
     if (MyText == "edit file"):
         w.editFile(currentfile)
 
-#    would like to be able to make variables camelcase
+    if (MyText == "switch file"):
+        print("Enter the already created file you wish to switch too")
+        MyText = l.listen()
+        MyText = MyText + ".py"
+        currentfile = MyText
+
+    #    would like to be able to make variables camelcase
 #    Ode to Tristan
     capital = 'capital'
     if capital in MyText:
