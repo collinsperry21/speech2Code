@@ -1,6 +1,6 @@
 Guide to navigating speechToCode !
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Stating speec2code
+Starting speech2code
 
 Speech2code will start by asking you for voice input
 
