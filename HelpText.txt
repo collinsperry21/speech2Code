@@ -17,10 +17,11 @@ The following list is a menu of options for how you could proceed, in no specifi
 A. Help manual
 B. Exiting speech2code
 C. Write code
-D. Run a file
-E. Read a file
-F. Open/Create a file
-
+D. Edit a file
+E. Run the current file 
+F. Read a file
+G. Open/Create a file
+H. Switch to another file that you've already created
 
 Option A: Help manual
 When you see the prompt "Waiting for voice input..."
