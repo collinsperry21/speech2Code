@@ -7,8 +7,13 @@ def helper(filename):
     #filename.close()
     theFile = open('HelpText.txt', "r")
     print(theFile.read())
+    #os.startfile('HelpText.txt')
     print("Say exit to return to the main menu")
-    theFile.close()
+    BacktoMenu = l.listen()
+    if BacktoMenu == "exit help" or "exit hell":
+        print("closing help manual and returning to main")
+        #os.system('TASKKILL /F /IM notepad.exe')
+        theFile.close()
 
 
 def openFile():
