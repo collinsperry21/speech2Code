@@ -44,7 +44,7 @@ while 1:
         break
 
 #   Helper Function
-    if MyText == 'help':
+    if MyText == "help" or MyText == "hell":
         print("Launching <help>...")
         f.helper(currentfile)
         continue
