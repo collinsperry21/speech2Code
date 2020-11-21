@@ -65,7 +65,7 @@ while 1:
         currentfile = f.openFile()
 
 #   Comment Function
-    if MyText == "write" or MyText == "right" or MyText == "rite":
+    if MyText == "write" or MyText == "right" or MyText == "rite" or MyText == "bright":
         if currentfile == "start.py":
             print("Warning!")
             print("You are writing to start.py and this will be deleted on speech2Code's next launch")
@@ -74,6 +74,7 @@ while 1:
         w.writeFile(currentfile)
 
     if MyText == "read" or MyText == "reed":
+        print(openfile.name)
         print("Reading File...")
         print(openfile.read())
         continue
@@ -83,7 +84,7 @@ while 1:
 
 
 
-    if (MyText == "edit file"):
+    if (MyText == "edit file" or MyText == "pedophile"):
         w.editFile(currentfile)
 
     if (MyText == "switch file"):

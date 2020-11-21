@@ -15,7 +15,10 @@ def openFile():
     print("Say File Name to open: <inputFileName>")
     fileString = l.listen() + ".py"
     fileString.replace(" ", "")
+    #not closing a file here for some reason??
     returnFile = open(fileString, "w+")
+    os.chmod(fileString, 0o700)
+    returnFile.close()
     return returnFile.name
 
 
@@ -26,6 +29,7 @@ def exitMenu(exit):
 
 def runFile(filename):
     print("Running file....")
+
     # runs the file the user has chosen
     if (len(filename) != 0):
         os.system(filename)

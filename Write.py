@@ -36,6 +36,23 @@ def writeFile(filename):
             print("String has been written too...")
             file.write("\n")
 
+        if text == "while loop" or text == "guadalupe":
+            print("Enter the conditional of the while loop")
+            text = l.listen()
+            if(text.find("less than")):
+                print("We found it1!!!!!")
+            parsedText = find_operator(text)
+            print(parsedText)
+            file.write( "while " + parsedTexts + ":" + "\n")
+            while 1:
+                print("Entering the body of the while loop, say 'exit while loop' to break out of loop")
+                text = l.listen()
+                bodyText = find_operator(text)
+                if text == "exit while loop":
+                    print("Exiting while loop....")
+                    break
+                file.write("\t" + bodyText + "\n")
+
         print("Finished parsing text: " + text)
 
 
@@ -91,7 +108,7 @@ def editFile(filename):
 
     lineNumber1 = int(lineNumber1)
     while( lineNumber1 > count or lineNumber1 < 1 ):
-        print("Please a valid fileline in the file you wish to edit. (1-n)")
+        print("Please enter a valid file line in the file you wish to edit. (1-", count, ")")
         lineNumber = l.listen()
 
 
@@ -127,18 +144,47 @@ def editFile(filename):
 
 
 def find_operator(edited_line):
-    if(edited_line.find("equals")):
-        return edited_line.replace("equals", "=")
-    elif(edited_line.find("plus")):
-        return edited_line.replace("plus", "+")
-    elif(edited_line.find("minus")):
-        return edited_line.replace("minus", "-")
-    elif(edited_line.find("times")):
-        return edited_line.replace("times", "*")
-    elif(edited_line.find("divided")):
-        return edited_line.replace("divided", "/")
-    elif (edited_line.find("modulus")):
-        return edited_line.replace("modulus", "%")
+    if(edited_line.find("equals") != -1):
+        edited_line = edited_line.replace("equals", "=")
+        print("test1")
+    if(edited_line.find("plus") != -1):
+        edited_line = edited_line.replace("plus", "+")
+        print("test2")
+    if(edited_line.find("minus") != -1):
+        edited_line = edited_line.replace("minus", "-")
+        print("test3")
+    if(edited_line.find("times") != -1):
+        edited_line = edited_line.replace("times", "*")
+        print("test4")
+    if(edited_line.find("divided") != -1):
+        edited_line == edited_line.replace("divided", "/")
+        print("test5")
+    if (edited_line.find("modulus") != -1):
+        edited_line == edited_line.replace("modulus", "%")
+        print("test6")
+    if(edited_line.find("greater than") != -1 and (edited_line.find("or equal to") == -1)):
+        edited_line = edited_line.replace("greater than", ">")
+        print("test7")
+    if ( (edited_line.find("lesson") != -1 or edited_line.find("less than")) and (edited_line.find("or equal to") == -1)):
+        edited_line = edited_line.replace("less than", "<")
+        edited_line = edited_line.replace("lesson", "<")
+        print("test8")
+    if(edited_line.find("equal to") != -1 and (edited_line.find("greater than") == -1) and (edited_line.find("less than") == -1) ):
+        edited_line = edited_line.replace("equal to", "=")
+        print("test9")
+    if (edited_line.find("less than or equal to") != -1):
+        edited_line = edited_line.replace("less than or equal to", "<=")
+        print("test10")
+    if (edited_line.find("greater than or equal to") != -1):
+        edited_line = edited_line.replace("greater than or equal to", ">=")
+        print("test11")
+    if (edited_line.find("not equal") != -1 and (edited_line.find("to") == -1)):
+        edited_line = edited_line.replace("not equal", "!=")
+        print("test12")
+    if (edited_line.find("not equal to") != -1):
+        edited_line = edited_line.replace("not equal to", "!=")
+        print("test13")
+    return edited_line
 
 
 def change_to_number(stringy):
