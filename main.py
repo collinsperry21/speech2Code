@@ -15,6 +15,8 @@ if o.path.exists("start.py"):
 
 #Create a base working space
 openfile = open("start.py", "w+")
+o.chmod("start.py", 0o700)
+openfile.close()
 #openfile.write("#This file will self-destruct everytime speech2Code is launched\n")
 #openfile.write("#Open/Create a file using \"open file\" \n")
 currentfile = openfile.name
@@ -111,4 +113,6 @@ while 1:
         print(MyText)
 #   Resume Useful code
     print("Finished Parsing: < " + MyText, " >")
+
+#consider commenting this out in the furture as we close it immediately
 openfile.close()

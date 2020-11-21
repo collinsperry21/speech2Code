@@ -43,7 +43,7 @@ def writeFile(filename):
                 print("We found it1!!!!!")
             parsedText = find_operator(text)
             print(parsedText)
-            file.write( "while " + parsedTexts + ":" + "\n")
+            file.write( "while " + parsedText + ":" + "\n")
             while 1:
                 print("Entering the body of the while loop, say 'exit while loop' to break out of loop")
                 text = l.listen()
@@ -153,8 +153,10 @@ def find_operator(edited_line):
     if(edited_line.find("minus") != -1):
         edited_line = edited_line.replace("minus", "-")
         print("test3")
-    if(edited_line.find("times") != -1):
-        edited_line = edited_line.replace("times", "*")
+    if(edited_line.find("asterisk") != -1 or edited_line.find("astrix") != -1) or edited_line.find("asterix") != -1:
+        edited_line = edited_line.replace("asterisk", "*")
+        edited_line = edited_line.replace("astrix", "*")
+        edited_line = edited_line.replace("asterix", "*")
         print("test4")
     if(edited_line.find("divided") != -1):
         edited_line == edited_line.replace("divided", "/")
