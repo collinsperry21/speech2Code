@@ -14,11 +14,13 @@ if o.path.exists("start.py"):
     o.remove("start.py")
 
 #Create a base working space
+
 openfile = open("start.py", "a+")
 o.chmod("start.py", 0o700)
 openfile.write("#This file will self-destruct everytime speech2Code is launched\n")
 openfile.write("#Open/Create a file using \"open file\" \n")
 openfile.close()
+
 currentfile = openfile.name
 print("\nWelcome to speech2Code!")
 print("Say <HELP> if this is your first time or need a refresher on the functionality.")
@@ -43,7 +45,7 @@ while 1:
         break
 
 #   Helper Function
-    if MyText == 'help':
+    if MyText == "help" or MyText == "hell":
         print("Launching <help>...")
         f.helper(currentfile)
         continue
@@ -57,8 +59,11 @@ while 1:
         print("Entering <open file>...")
         currentfile = f.openFile()
 
-#   Write Function
-    if MyText == "write" or MyText == "right" or MyText == "rite":
+
+#   Comment Function
+    if MyText == "write" or MyText == "right" or MyText == "rite" or MyText == "bright":
+        fileBuffer = []
+
         if currentfile == "start.py":
             print("Warning!")
             print("You are writing to start.py and this will be deleted on speech2Code's next launch")
@@ -68,21 +73,28 @@ while 1:
         w.writeFile(currentfile)
 
     if MyText == "read" or MyText == "reed":
+        print(openfile.name)
         print("Reading File...")
         openfile = open(currentfile, "r")
         print(openfile.read())
         openfile.close()
         continue
 
-    if MyText == "run file":
-        openfile.close()
-        f.runFile(currentfile)
-        openfile = open(currentfile, 'a+')
 
-    if (MyText == "edit file"):
+    if (MyText == "run file"):
+        f.runFile(currentfile)
+
+
+    if (MyText == "edit file" or MyText == "pedophile"):
         w.editFile(currentfile)
 
-#    would like to be able to make variables camelcase
+    if (MyText == "switch file"):
+        print("Enter the already created file you wish to switch too")
+        MyText = l.listen()
+        MyText = MyText + ".py"
+        currentfile = MyText
+
+    #    would like to be able to make variables camelcase
 #    Ode to Tristan
     capital = 'capital'
     if capital in MyText:
@@ -101,4 +113,6 @@ while 1:
 #   Resume Useful code
 
     print("Finished Parsing: < " + MyText, " >")
+
+#consider commenting this out in the furture as we close it immediately
 openfile.close()

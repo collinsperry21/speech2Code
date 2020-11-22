@@ -1,2 +1,85 @@
 Guide to navigating speechToCode !
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Starting speech2code
+
+Speech2code will start by asking you for voice input
+
+
+1. Begin by saying the line "open file" if you wish to create or open an existing
+file. Speech2code will by default open the file "start.py" if you at first don't
+say "open file".
+    a. Say the name of the existing file or name of the file you are about to create,
+    if one doesn't exist already
+
+The following list is a menu of options for how you could proceed, in no specific order.
+
+
+A. Help manual
+B. Exiting speech2code
+C. Write code
+D. Edit a file
+E. Run the current file 
+F. Read a file
+G. Open/Create a file
+H. Switch to another file that you've already created
+
+Option A: Help manual
+When you see the prompt "Waiting for voice input..."
+Say "help", and this help manual document will display
+
+Option B: Exit speech2code
+When you see the prompt "Waiting for voice input..."
+Say "end speech to code" to exit
+
+Option C: Write code mode
+When you see the prompt "Waiting for voice input..."
+Say "write"
+This will then trigger several options for you by first asking you "What would you like to write"?
+Choose one of the following:
+
+  Option C1: Comment
+    Say "comment" to comment on the current line
+    At the prompt "You are commenting to line#: <#>" ... say your comment.
+
+  Option C2: Variable
+    Say "variable" to create a variable
+    At the prompt "Please say your variable name: <varName>" say the desired name for your variable
+    Then, at the following prompt "Value: <inputValue>"  say whatever value you would like to assign
+    to this variable
+
+  Option C3: String
+    Say "string" to create a string.
+    At the prompt "Enter the contents of your string".... say what you want your string to hold
+
+  Option C4: Exit the write code mode
+    Say "exit write" to exit the write code mode.
+
+Option D: Edit a file
+    When you see the prompt "Waiting for voice input..." say "edit file" to begin editing the
+    currently open file.
+    At the prompt "Say the line number in the file you want to edit: " say the desired line number.
+
+Option E: Run the current file
+  When you see the prompt "Waiting for voice input..."
+  Say "run file" to run the file yor are currently on.
+
+Option F: Read a file
+    When you see the prompt "Waiting for voice input..."
+    Say "read"
+
+Option G: Open an existing file to work on or create a new one to work on.
+  When you see the prompt "Waiting for voice input..."
+  Say "open file"
+  This will call the openfile() function and display: "Say File Name to open: <inputFileName>"
+  At this point you have these two options:
+    F1: If you want to open an existing file in your working directory, say its name.
+    F2: If you want to create a new file to begin working on it, just say the name that you
+    would like to call this file, and it will create and open it for you to start working on it
+
+Option H: Switch to another file that you've already created.
+    When you see the prompt "Waiting for voice input..."
+    Say "switch file" to initiate the switch to another file.
+    At the prompt "Enter the already created file name you wish to switch too"
+    Say the desired file name, and that file will become the currently open file
+
