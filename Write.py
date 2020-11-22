@@ -65,9 +65,7 @@ def writeFile(filename):
             ifString = ifstate(filename)
             file.write(ifString)
             file.write("\n")
-            
-        file.close()
-        print("Finished parsing text: " + text)
+
 
 # Start of print logic
         if text == "string" or text == "strength":
