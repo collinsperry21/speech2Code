@@ -11,6 +11,7 @@ def writeFile(filename):
         exit(1)
 
 
+
     # Write Loop
     while 1:
         file = open(filename, "a+")
@@ -50,13 +51,14 @@ def writeFile(filename):
             file.write("print(" + "\"" + text + "\"" + ")" )
             print("String has been written too...")
             file.write("\n")
-
+# Start of for loop logic
         if text == "for loop" or text == "orally":
             print("Entering For Loop...")
-            file.close()
-            forLoop(filename)
+            file.write(forLoop(filename))
+
     
         # Start of if statement logic
+
 
         if text == "if" or text == "elf" or text == "of" or text == "f" or text == "it":
             print("Entering 'if' statement")
@@ -131,10 +133,8 @@ def writeFile(filename):
                             print("Exiting print....")
                             break
 
-
-
-    file.close()
-    print("Finished parsing text: " + text)
+        file.close()
+        print("Finished parsing text: " + text)
 
 
 
@@ -148,8 +148,7 @@ def forLoop(filename):
     rangeNum = l.listen()
     temp = change_to_number(rangeNum)
     forString = "for " + varName + " in range(1," + temp + "):"
-    file = open(filename, "a+")
-    file.write(forString)
+
     print("Say the option you would like to do")
     options = "Options are: \n Variable \n Print string \n print variable \n Exit For Loop"
     print(options)
@@ -174,6 +173,7 @@ def forLoop(filename):
         if (option1 == "exit for loop"):
             print("Exiting the For Loop")
         counter += 1
+    return forString + "\n" + printstr
 
 def comment(filename):
     while 1:
