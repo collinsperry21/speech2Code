@@ -35,8 +35,8 @@ def writeFile(filename):
 
         if text == "for loop" or text == "orally":
             print("Entering For Loop...")
-            file.close()
-            forLoop(filename)
+
+            file.write(forLoop(filename))
 
 
         file.close()
@@ -52,9 +52,7 @@ def forLoop(filename):
     print("Give a # of times to run this loop")
     rangeNum = l.listen()
     temp = change_to_number(rangeNum)
-    forString = "for " + varName + " in range(1," + temp + ")"
-    file = open(filename, "a+")
-    file.write(forString)
+    forString = "for " + varName + " in range(1," + temp + "):"
     print("Say the option you would like to do")
     options = "Options are: \n Variable \n Print string \n print variable \n Exit For Loop"
     print(options)
@@ -79,6 +77,7 @@ def forLoop(filename):
         if (option1 == "exit for loop"):
             print("Exiting the For Loop")
         counter += 1
+    return forString + "\n" + printstr
 
 def comment(filename):
     while 1:
