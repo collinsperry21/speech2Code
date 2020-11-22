@@ -51,13 +51,21 @@ def writeFile(filename):
             file.write("print(" + "\"" + text + "\"" + ")" )
             print("String has been written too...")
             file.write("\n")
-
+# Start of for loop logic
         if text == "for loop" or text == "orally":
             print("Entering For Loop...")
-
             file.write(forLoop(filename))
 
+    
+        # Start of if statement logic
 
+
+        if text == "if" or text == "elf" or text == "of" or text == "f" or text == "it":
+            print("Entering 'if' statement")
+            ifString = ifstate(filename)
+            file.write(ifString)
+            file.write("\n")
+            
         file.close()
         print("Finished parsing text: " + text)
 
@@ -140,6 +148,7 @@ def forLoop(filename):
     rangeNum = l.listen()
     temp = change_to_number(rangeNum)
     forString = "for " + varName + " in range(1," + temp + "):"
+
     print("Say the option you would like to do")
     options = "Options are: \n Variable \n Print string \n print variable \n Exit For Loop"
     print(options)
@@ -183,7 +192,7 @@ def comment(filename):
             print("Unable to process request. Input heard: ", choice)
             continue
 
-
+        
 def variableDeclaration(filename):
     currentline = len(filename.splitlines())
     print("You are writing to line#:", currentline)
@@ -196,7 +205,118 @@ def variableDeclaration(filename):
     return tempvar + " = " + tempVal
 
 
+def ifstate(filename):
+    currentline = len(filename.splitlines())
+    print("What kind of 'if' statement would you like to use")
+    print("if statement\n"
+          "if-else statement\n")
+    print("Say the statement you would like")
+    option = ""
+    option = l.listen()
+    #option = change_to_number(option)
+    print(option)
+    print("The option selected: ", option)
+    if (option == "if statement" or option == "if they payment"):
+        print("Entering regular 'if' statement")
+        print("Please state the conditional you want in the if statement")
+        print("You are writing to line#:", currentline)
+        tempIf = l.listen()
+        condOp = find_operator(tempIf) #if (x > 5)
+        print("if ("+ condOp + ") :")
+        first = "if (" + condOp + ") :\n"
+        print("What would you like to go in the body of the if statement")
+        print ("Options are: \n Variable \n Print string \n print variable  \n While Loop \n Exit If Statement")
+        option1 = l.listen()
+        printstr = ""
+        counter = 0
+        while(option1 != "exit if statement"):
+            if(counter > 0):
+                print("Options are: \n Variable \n Print string \n print variable  \n While Loop \n Exit If Statement")
+                option1 = l.listen()
+            if (option1 == "variable"):
+                print("Entering variable creation")
+                printstr += "\t" + variableDeclaration(filename) + "\n"
+            if(option1 == "print string"):
+                print("Say what string you would like to print")
+                print1 = l.listen()
+                print("Your string is: ", print1)
+                printstr += "\tprint(" + "\"" + print1 + "\"" + ")" + "\n"
+            if (option1 == "print variable"):
+                print("Say which variable you want printed \n")
+                print1 = l.listen()
+                if (print1 == "why"):
+                    print1 = "y"
+                print("Your selected variable is: ", print1)
+                printstr += "\tprint(" + print1 + ")" + "\n"
+            if (option1 == "exit if statement"):
+                print("Exiting the if statement")
+            counter+=1
+        return first + printstr
 
+    elif (option == "if else statement"):
+        print("Entering option 2: if-else statement")
+        print("Please state the conditional you want in the if-else statement")
+        print("You are writing to line#:", currentline)
+
+        tempIf = l.listen()
+        condOp = find_operator(tempIf)  # if (x > 5)
+        print("if (" + condOp + ") :")
+        print("What would you like to have in the body of the 'if' portion")
+        first = "if (" + condOp + ") :\n"
+        print("Options are: \n Variable \n Print string \n print variable  \n  Exit If Statement")
+        option1 = l.listen()
+        printstr = ""
+        counter = 0
+        while (option1 != "exit if statement"):
+            if (counter > 0):
+                print("Options are: \n Variable \n Print string \n print variable \n Exit If Statement")
+                option1 = l.listen()
+            if (option1 == "variable"):
+                print("entered variable")
+                printstr += "\t" + variableDeclaration(filename) + "\n"
+            if (option1 == "print string"):
+                print("Say what string you would like to print")
+                print1 = l.listen()
+                print("you said: ", print1)
+                printstr += "\tprint(" + "\"" + print1 + "\"" + ")" + "\n"
+            if (option1 == "print variable"):
+                print("Say which variable you want printed \n")
+                print1 = l.listen()
+                if (print1 == "why"):
+                    print1 = "y"
+                print("Your selected variable is: ", print1)
+                printstr += "\tprint(" + print1 + ")" + "\n"
+            if (option1 == "exit if statement"):
+                print("Exiting the if statement")
+            counter += 1
+        print("Entering the else portion\n Select and option for the body of the 'else' portion")
+        print("Options are: \n Variable \n Print string \n print variable  \n Exit If Statement")
+        elseop = l.listen()
+        elsestr = ""
+        counter = 0
+        while (elseop != "exit if statement"):
+            if (counter > 0):
+                print("Options are: \n Variable \n Print string \n print variable  \n Exit If Statement")
+                elseop = l.listen()
+            if (elseop == "variable"):
+                print("entered variable")
+                elsestr += "\t" + variableDeclaration(filename) + "\n"
+            if (elseop == "print string"):
+                print("Say what string you would like to print")
+                print1 = l.listen()
+                print("you said: ", print1)
+                elsestr += "\tprint(" + "\"" + print1 + "\"" + ")" + "\n"
+            if (elseop == "print variable"):
+                print("Say which variable you want printed \n")
+                print1 = l.listen()
+                if(print1 == "why"):
+                    print1 = "y"
+                print("Your selected variable is: ", print1)
+                elsestr += "\tprint(" + print1 + ")" + "\n"
+            if (elseop == "exit if statement"):
+                print("Exiting the if statement")
+            counter += 1
+        return first + printstr + "else :\n" + elsestr
 
 
 def editFile(filename):
