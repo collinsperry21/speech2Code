@@ -14,19 +14,18 @@ if o.path.exists("start.py"):
     o.remove("start.py")
 
 #Create a base working space
-openfile = open("start.py", "w+")
+
+openfile = open("start.py", "a+")
 o.chmod("start.py", 0o700)
+openfile.write("#This file will self-destruct everytime speech2Code is launched\n")
+openfile.write("#Open/Create a file using \"open file\" \n")
 openfile.close()
-#openfile.write("#This file will self-destruct everytime speech2Code is launched\n")
-#openfile.write("#Open/Create a file using \"open file\" \n")
+
 currentfile = openfile.name
-#print(currentfile)
-
-
 print("\nWelcome to speech2Code!")
 print("Say <HELP> if this is your first time or need a refresher on the functionality.")
 print("If not, happy coding !\n")
-print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 # Loop infinitely for user to
 # speak
@@ -51,12 +50,6 @@ while 1:
         f.helper(currentfile)
         continue
 
-#   Variable Assignment Function
-    #if MyText == 'variable':
-     #   print("Entering variable assignment...")
-      #  varString = f.variableDeclaration(currentfile)
-       # print("Wrote to ", openfile.name, " ", varString)
-
 #   Open File Function
     if MyText == "open file":
         if currentfile != "start.py":
@@ -66,25 +59,30 @@ while 1:
         print("Entering <open file>...")
         currentfile = f.openFile()
 
+
 #   Comment Function
     if MyText == "write" or MyText == "right" or MyText == "rite" or MyText == "bright":
         fileBuffer = []
+
         if currentfile == "start.py":
             print("Warning!")
             print("You are writing to start.py and this will be deleted on speech2Code's next launch")
-            print("Consider opening another file using <open file> from the menu")
+            print("Consider opening another file using <open file> from the menu\n")
         print("Entering write for current file... ", currentfile)
+        MyText = "write"
         w.writeFile(currentfile)
 
     if MyText == "read" or MyText == "reed":
         print(openfile.name)
         print("Reading File...")
+        openfile = open(currentfile, "r")
         print(openfile.read())
+        openfile.close()
         continue
+
 
     if (MyText == "run file"):
         f.runFile(currentfile)
-
 
 
     if (MyText == "edit file" or MyText == "pedophile"):
@@ -113,6 +111,7 @@ while 1:
         MyText = "".join(someText)
         print(MyText)
 #   Resume Useful code
+
     print("Finished Parsing: < " + MyText, " >")
 
 #consider commenting this out in the furture as we close it immediately

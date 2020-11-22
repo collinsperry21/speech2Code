@@ -4,16 +4,11 @@ import Listen as l
 def writeFile(filename):
 
 
+
     #   Currently a conditional to make sure we aren't messing with our own files. Destroy this later
     if filename == "main.py" or filename == "functions.py" or filename == "listen.py" or filename == "write.py":
         print("CRITICAL ERROR. ATTEMPTING TO OVERWRITE SOURCE CODE. EXITING...")
         exit(1)
-    # if not empty then replace whole file with everything inside file buffer
-
-
-
-
-
 
 
     # Write Loop
@@ -22,6 +17,7 @@ def writeFile(filename):
 
         print("Current file looks like:")
         print(file.read())
+
 
 
         print("What would you like to write?")
@@ -34,11 +30,13 @@ def writeFile(filename):
             file.close()
             break
 
+
         #logic for commenting
         if text == "comment" or text == "common" or text =="comments":
             print("Commenting...")
             comment(filename)
         #logic for variable declaration
+
         if text == "variable":
             print("Entering variable...")
             assignString = variableDeclaration(filename)
@@ -46,6 +44,23 @@ def writeFile(filename):
             file.write("\n")
 
 
+        if text == "string":
+            print("Enter the contents of your string")
+            text = l.listen()
+            file.write("print(" + "\"" + text + "\"" + ")" )
+            print("String has been written too...")
+            file.write("\n")
+
+        if text == "for loop" or text == "orally":
+            print("Entering For Loop...")
+            file.close()
+            forLoop(filename)
+
+
+        file.close()
+        print("Finished parsing text: " + text)
+
+# Start of print logic
         if text == "string" or text == "strength":
             print("Enter the contents of your string")
             text = l.listen()
@@ -53,9 +68,9 @@ def writeFile(filename):
             file.write("print(" + "\"" + text + "\"" + ")")
             print("String has been written...")
             file.write("\n")
-
+# Start of While Loop Logic
         if text == "while loop" or text == "guadalupe":
-            #
+            
 
 
             print("Enter the conditional of the while loop")
@@ -117,6 +132,42 @@ def writeFile(filename):
 
 
 
+def forLoop(filename):
+    print("\n ")
+    print("Give a variable name to iterate on")
+    varName = l.listen()
+    print("variable given =", varName)
+    print("Give a # of times to run this loop")
+    rangeNum = l.listen()
+    temp = change_to_number(rangeNum)
+    forString = "for " + varName + " in range(1," + temp + ")"
+    file = open(filename, "a+")
+    file.write(forString)
+    print("Say the option you would like to do")
+    options = "Options are: \n Variable \n Print string \n print variable \n Exit For Loop"
+    print(options)
+    option1 = l.listen()
+    printstr = ""
+    counter = 0
+    while (option1 != "exit for loop"):
+        if (counter > 0):
+            print(options)
+            option1 = l.listen()
+        if (option1 == "variable"):
+            print("entered variable")
+            printstr += "\t" + variableDeclaration(filename) + "\n"
+        if (option1 == "print string"):
+            print("say what you want printed")
+            print1 = l.listen()
+            printstr += "\tprint(" + """ + print1 + """ + ")" + "\n"
+        if (option1 == "print variable"):
+            print("say which variable you want printed \n")
+            print1 = l.listen()
+            printstr += "\tprint(" + print1 + ")" + "\n"
+        if (option1 == "exit for loop"):
+            print("Exiting the For Loop")
+        counter += 1
+
 def comment(filename):
     while 1:
         currentline = len(filename.splitlines())
@@ -153,6 +204,7 @@ def variableDeclaration(filename):
 def editFile(filename):
     print("Editing file...." + '\n')
     print("Say the line number of the file you want to edit: ")
+
     count = len(open(filename).readlines())
     lineNumber1 = l.listen()
     while (1):
@@ -190,7 +242,6 @@ def editFile(filename):
     #need to replace "equals" with "="
     newLine = find_operator(newLine)
 
-
     string_list[lineNumber1-1] = newLine
     print("Line has been edited...")
 
@@ -198,6 +249,7 @@ def editFile(filename):
     for i in range (len(string_list)):
         myString = string_list[i]
         print(myString)
+
         my_file.write(myString + "\n")
 
 
@@ -250,6 +302,7 @@ def find_operator(edited_line):
     return edited_line
 
 
+
 def change_to_number(stringy):
 
     if(stringy == "won" or stringy == "one"):
@@ -275,11 +328,10 @@ def change_to_number(stringy):
 
     elif(stringy == "ate" or stringy == "eight"):
         return 8
+
     elif(stringy == "nine" or stringy == "nein"):
         return 9
 
     else:
         return stringy
-
-
 

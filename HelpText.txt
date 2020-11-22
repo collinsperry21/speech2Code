@@ -1,5 +1,6 @@
 Guide to navigating speechToCode !
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 Starting speech2code
 
 Speech2code will start by asking you for voice input
@@ -81,3 +82,4 @@ Option H: Switch to another file that you've already created.
     Say "switch file" to initiate the switch to another file.
     At the prompt "Enter the already created file name you wish to switch too"
     Say the desired file name, and that file will become the currently open file
+
