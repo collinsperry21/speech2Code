@@ -68,6 +68,7 @@ while 1:
 
 #   Comment Function
     if MyText == "write" or MyText == "right" or MyText == "rite" or MyText == "bright":
+        fileBuffer = []
         if currentfile == "start.py":
             print("Warning!")
             print("You are writing to start.py and this will be deleted on speech2Code's next launch")

@@ -1,16 +1,29 @@
 import Listen as l
 
+
 def writeFile(filename):
+
 
     #   Currently a conditional to make sure we aren't messing with our own files. Destroy this later
     if filename == "main.py" or filename == "functions.py" or filename == "listen.py" or filename == "write.py":
         print("CRITICAL ERROR. ATTEMPTING TO OVERWRITE SOURCE CODE. EXITING...")
         exit(1)
-    file = open(filename, "a+")
-    print("Current file looks like:")
-    print(file.read())
+    # if not empty then replace whole file with everything inside file buffer
+
+
+
+
+
+
+
     # Write Loop
     while 1:
+        file = open(filename, "a+")
+
+        print("Current file looks like:")
+        print(file.read())
+
+
         print("What would you like to write?")
         print("Waiting for input...")
         text = l.listen()
@@ -29,14 +42,18 @@ def writeFile(filename):
             file.write(assignString)
             file.write("\n")
 
-        if text == "string":
+        if text == "string" or text == "strength":
             print("Enter the contents of your string")
             text = l.listen()
-            file.write( "print(" + "\"" + text + "\"" + ")" )
-            print("String has been written too...")
+
+            file.write("print(" + "\"" + text + "\"" + ")")
+            print("String has been written...")
             file.write("\n")
 
         if text == "while loop" or text == "guadalupe":
+            #
+
+
             print("Enter the conditional of the while loop")
             text = l.listen()
             if(text.find("less than")):
@@ -45,15 +62,55 @@ def writeFile(filename):
             print(parsedText)
             file.write( "while " + parsedText + ":" + "\n")
             while 1:
+                # print, variable, assignment x=7 x= ,
                 print("Entering the body of the while loop, say 'exit while loop' to break out of loop")
+                print("1 - variable declaration/assignment")
+                print("2 - print within the while loop")
+
                 text = l.listen()
-                bodyText = find_operator(text)
+
+                print(text)
+
                 if text == "exit while loop":
                     print("Exiting while loop....")
                     break
-                file.write("\t" + bodyText + "\n")
 
-        print("Finished parsing text: " + text)
+                if(text == "won" or text == "one" or text == "1"):
+                    print("State your declaration/assignment")
+                    text = l.listen()
+                    bodyText = find_operator(text)
+                    print("Variable has been written")
+
+                    file.write("\t" + bodyText + "\n")
+
+                if(text == "two" or text == "to" or text == "too" or text == "2"):
+                    print("Are you printing a string or a variable?")
+                    print("To exit print say 'exit print'")
+
+
+                    while(1):
+                        text = l.listen()
+                        print("Audio Heard: " + text)
+                        if text == "string":
+                            print("Enter the contents of your string")
+                            text = l.listen()
+                            file.write("\t" + "print(" + "\"" + text + "\"" + ")" + "\n")
+                            print("String has been written...")
+                        if text == "variable":
+                            print("Enter the contents of your variable")
+                            text = l.listen()
+                            file.write("\t" + "print("  + text + ")" + "\n")
+                            print("Variable has been written...")
+                        if text == "exit print":
+                            print("Exiting print....")
+                            break
+
+
+
+    file.close()
+    print("Finished parsing text: " + text)
+
+
 
 
 def comment(filename):
