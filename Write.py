@@ -159,7 +159,7 @@ def forLoop(filename):
         if (option1 == "print string"):
             print("say what you want printed")
             print1 = l.listen()
-            printstr += "\tprint(" + """ + print1 + """ + ")" + "\n"
+            printstr += "\tprint(" + "\"" + print1 + "\"" + ")" + "\n"
         if (option1 == "print variable"):
             print("say which variable you want printed \n")
             print1 = l.listen()
