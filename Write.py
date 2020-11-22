@@ -140,7 +140,7 @@ def forLoop(filename):
     print("Give a # of times to run this loop")
     rangeNum = l.listen()
     temp = change_to_number(rangeNum)
-    forString = "for " + varName + " in range(1," + temp + ")"
+    forString = "for " + varName + " in range(1," + temp + "):"
     file = open(filename, "a+")
     file.write(forString)
     print("Say the option you would like to do")
