@@ -28,19 +28,23 @@ def writeFile(filename):
         print("Waiting for input...")
         text = l.listen()
 
+        #to break out of infinite loop
         if text == "exit right" or text == "exit write":
             print("Exiting write...")
             file.close()
             break
 
+        #logic for commenting
         if text == "comment" or text == "common" or text =="comments":
             print("Commenting...")
             comment(filename)
+        #logic for variable declaration
         if text == "variable":
             print("Entering variable...")
             assignString = variableDeclaration(filename)
             file.write(assignString)
             file.write("\n")
+
 
         if text == "string" or text == "strength":
             print("Enter the contents of your string")
@@ -199,7 +203,7 @@ def editFile(filename):
 
     my_file.close()
 
-
+#need to parse speech into actual operators
 def find_operator(edited_line):
     if(edited_line.find("equals") != -1):
         edited_line = edited_line.replace("equals", "=")
