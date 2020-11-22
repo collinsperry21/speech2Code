@@ -1,5 +1,5 @@
 # Python program to translate 
-# speech2Code
+# speech to text
 
 import Functions as f
 import os as o
@@ -14,22 +14,21 @@ if o.path.exists("start.py"):
     o.remove("start.py")
 
 #Create a base working space
-openfile = open("start.py", "w+")
-#openfile.write("# This file will self-destruct everytime speech2Code is launched\n")
-#openfile.write("# ..Open/Create a file using \"<open file>\" \n")
+openfile = open("start.py", "a+")
+o.chmod("start.py", 0o700)
+openfile.write("#This file will self-destruct everytime speech2Code is launched\n")
+openfile.write("#Open/Create a file using \"open file\" \n")
+openfile.close()
 currentfile = openfile.name
-#print(currentfile)
-
-
 print("\nWelcome to speech2Code!")
 print("Say <HELP> if this is your first time or need a refresher on the functionality.")
 print("If not, happy coding !\n")
-print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
 # Loop infinitely for user to
 # speak
-# Main Loop
 while 1:
+
     # Current status output
     print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Main Menu~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
     print("Current working file: ", currentfile)
@@ -46,15 +45,8 @@ while 1:
 #   Helper Function
     if MyText == 'help':
         print("Launching <help>...")
-        print("\n")
         f.helper(currentfile)
         continue
-
-#   Variable Assignment Function
-    #if MyText == 'variable':
-     #   print("Entering variable assignment...")
-      #  varString = f.variableDeclaration(currentfile)
-       # print("Wrote to ", openfile.name, " ", varString)
 
 #   Open File Function
     if MyText == "open file":
@@ -62,29 +54,33 @@ while 1:
             print("Close current file before opening another")
             print("Currently in ", currentfile)
             continue
-        openfile.close()
         print("Entering <open file>...")
         currentfile = f.openFile()
 
-#   Comment Function
+#   Write Function
     if MyText == "write" or MyText == "right" or MyText == "rite":
         if currentfile == "start.py":
             print("Warning!")
             print("You are writing to start.py and this will be deleted on speech2Code's next launch")
-            print("Consider opening another file using <open file> from the menu")
+            print("Consider opening another file using <open file> from the menu\n")
         print("Entering write for current file... ", currentfile)
-        openfile.close()
+        MyText = "write"
         w.writeFile(currentfile)
 
     if MyText == "read" or MyText == "reed":
         print("Reading File...")
+        openfile = open(currentfile, "r")
         print(openfile.read())
         openfile.close()
         continue
 
     if MyText == "run file":
+        openfile.close()
         f.runFile(currentfile)
+        openfile = open(currentfile, 'a+')
 
+    if (MyText == "edit file"):
+        w.editFile(currentfile)
 
 #    would like to be able to make variables camelcase
 #    Ode to Tristan
@@ -103,5 +99,6 @@ while 1:
         MyText = "".join(someText)
         print(MyText)
 #   Resume Useful code
+
     print("Finished Parsing: < " + MyText, " >")
 openfile.close()

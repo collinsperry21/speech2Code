@@ -1,16 +1,15 @@
 import Listen as l
 
+
 def writeFile(filename):
 
-    #   Currently a conditional to make sure we aren't messing with our own files. Destroy this later
-    if filename == "main.py" or filename == "functions.py" or filename == "listen.py" or filename == "write.py":
-        print("CRITICAL ERROR. ATTEMPTING TO OVERWRITE SOURCE CODE. EXITING...")
-        exit(1)
-    file = open(filename, "a+")
-    print("Current file looks like:")
-    print(file.read())
+
+
     # Write Loop
     while 1:
+        file = open(filename, "a+")
+        print("Current file looks like: \n")
+        print(file.read())
         print("What would you like to write?")
         print("Waiting for input...")
         text = l.listen()
@@ -20,7 +19,7 @@ def writeFile(filename):
             file.close()
             break
 
-        if text == "comment" or text == "common" or text =="comments":
+        if text == "comment" or text == "common" or text == "comments":
             print("Commenting...")
             comment(filename)
         if text == "variable":
@@ -32,12 +31,56 @@ def writeFile(filename):
         if text == "string":
             print("Enter the contents of your string")
             text = l.listen()
-            file.write( "print(" + "\"" + text + "\"" + ")" )
+            file.write("print(" + "\"" + text + "\"" + ")" )
             print("String has been written too...")
             file.write("\n")
 
+        if text == "for loop" or text == "orally":
+            print("Entering For Loop...")
+            file.close()
+            forLoop(filename)
+
+
+        file.close()
         print("Finished parsing text: " + text)
 
+
+
+def forLoop(filename):
+    print("\n ")
+    print("Give a variable name to iterate on")
+    varName = l.listen()
+    print("variable given =", varName)
+    print("Give a # of times to run this loop")
+    rangeNum = l.listen()
+    temp = change_to_number(rangeNum)
+    forString = "for " + varName + " in range(1," + temp + ")"
+    file = open(filename, "a+")
+    file.write(forString)
+    print("Say the option you would like to do")
+    options = "Options are: \n Variable \n Print string \n print variable \n Exit For Loop"
+    print(options)
+    option1 = l.listen()
+    printstr = ""
+    counter = 0
+    while (option1 != "exit for loop"):
+        if (counter > 0):
+            print(options)
+            option1 = l.listen()
+        if (option1 == "variable"):
+            print("entered variable")
+            printstr += "\t" + variableDeclaration(filename) + "\n"
+        if (option1 == "print string"):
+            print("say what you want printed")
+            print1 = l.listen()
+            printstr += "\tprint(" + """ + print1 + """ + ")" + "\n"
+        if (option1 == "print variable"):
+            print("say which variable you want printed \n")
+            print1 = l.listen()
+            printstr += "\tprint(" + print1 + ")" + "\n"
+        if (option1 == "exit for loop"):
+            print("Exiting the For Loop")
+        counter += 1
 
 def comment(filename):
     while 1:
@@ -131,6 +174,4 @@ def change_to_number(stringy):
 
     else:
         return stringy
-
-
 
