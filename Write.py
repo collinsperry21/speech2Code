@@ -3,8 +3,6 @@ import Listen as l
 
 def writeFile(filename):
 
-
-
     # Write Loop
     while 1:
         file = open(filename, "a+")
@@ -73,7 +71,7 @@ def forLoop(filename):
         if (option1 == "print string"):
             print("say what you want printed")
             print1 = l.listen()
-            printstr += "\tprint(" + """ + print1 + """ + ")" + "\n"
+            printstr += "\tprint(" + "\"" + print1 + "\"" + ")" + "\n"
         if (option1 == "print variable"):
             print("say which variable you want printed \n")
             print1 = l.listen()
