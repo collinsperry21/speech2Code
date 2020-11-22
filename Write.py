@@ -30,12 +30,37 @@ def writeFile(filename):
             file.write(assignString)
             file.write("\n")
 
+        if text == "if" or text == "elf" or text == "of" or text == "f" or text == "it":
+            print("Entering 'if' statement")
+            ifString = ifstate(filename)
+            file.write(ifString)
+            file.write("\n")
+
         if text == "string":
             print("Enter the contents of your string")
             text = l.listen()
             file.write( "print(" + "\"" + text + "\"" + ")" )
             print("String has been written too...")
             file.write("\n")
+
+        if text == "while loop" or text == "guadalupe":
+            print("Enter the conditional of the while loop")
+            text = l.listen()
+            if (text.find("less than")):
+                print("We found it1!!!!!")
+            parsedText = find_operator(text)
+            print(parsedText)
+            file.write("while " + parsedText + ":" + "\n")
+            while 1:
+                print("Entering the body of the while loop, say 'exit while loop' to break out of loop")
+                text = l.listen()
+                bodyText = find_operator(text)
+                if text == "exit while loop":
+                    print("Exiting while loop....")
+                    break
+                file.write("\t" + bodyText + "\n")
+
+
 
         print("Finished parsing text: " + text)
 
@@ -63,6 +88,12 @@ def variableDeclaration(filename):
     print("You are writing to line#:", currentline)
     print("Please say your variable name: ")
     tempvar = l.listen()
+    if (tempvar == "why"):
+        tempvar = "y"
+    if (tempvar == "see"):
+        tempvar = "z"
+    if (tempvar == "eye"):
+        tempvar = "i"
     print("Variable Name: ", tempvar)
     print("Value: ")
     tempVal = l.listen()
@@ -128,18 +159,49 @@ def editFile(filename):
 
 
 def find_operator(edited_line):
-    if(edited_line.find("equals")):
-        return edited_line.replace("equals", "=")
-    elif(edited_line.find("plus")):
-        return edited_line.replace("plus", "+")
-    elif(edited_line.find("minus")):
-        return edited_line.replace("minus", "-")
-    elif(edited_line.find("times")):
-        return edited_line.replace("times", "*")
-    elif(edited_line.find("divided")):
-        return edited_line.replace("divided", "/")
-    elif (edited_line.find("modulus")):
-        return edited_line.replace("modulus", "%")
+    if(edited_line.find("equals") != -1):
+        edited_line = edited_line.replace("equals", "=")
+        print("test1")
+    if(edited_line.find("plus") != -1):
+        edited_line = edited_line.replace("plus", "+")
+        print("test2")
+    if(edited_line.find("minus") != -1):
+        edited_line = edited_line.replace("minus", "-")
+        print("test3")
+    if(edited_line.find("asterisk") != -1 or edited_line.find("astrix") != -1) or edited_line.find("asterix") != -1:
+        edited_line = edited_line.replace("asterisk", "*")
+        edited_line = edited_line.replace("astrix", "*")
+        edited_line = edited_line.replace("asterix", "*")
+        print("test4")
+    if(edited_line.find("divided") != -1):
+        edited_line == edited_line.replace("divided", "/")
+        print("test5")
+    if (edited_line.find("modulus") != -1):
+        edited_line == edited_line.replace("modulus", "%")
+        print("test6")
+    if(edited_line.find("greater than") != -1 and (edited_line.find("or equal to") == -1)):
+        edited_line = edited_line.replace("greater than", ">")
+        print("test7")
+    if ( (edited_line.find("lesson") != -1 or edited_line.find("less than")) and (edited_line.find("or equal to") == -1)):
+        edited_line = edited_line.replace("less than", "<")
+        edited_line = edited_line.replace("lesson", "<")
+        print("test8")
+    if(edited_line.find("equal to") != -1 and (edited_line.find("greater than") == -1) and (edited_line.find("less than") == -1) ):
+        edited_line = edited_line.replace("equal to", "=")
+        print("test9")
+    if (edited_line.find("less than or equal to") != -1):
+        edited_line = edited_line.replace("less than or equal to", "<=")
+        print("test10")
+    if (edited_line.find("greater than or equal to") != -1):
+        edited_line = edited_line.replace("greater than or equal to", ">=")
+        print("test11")
+    if (edited_line.find("not equal") != -1 and (edited_line.find("to") == -1)):
+        edited_line = edited_line.replace("not equal", "!=")
+        print("test12")
+    if (edited_line.find("not equal to") != -1):
+        edited_line = edited_line.replace("not equal to", "!=")
+        print("test13")
+    return edited_line
 
 
 def change_to_number(stringy):
@@ -173,5 +235,114 @@ def change_to_number(stringy):
     else:
         return stringy
 
+def ifstate(filename):
+    currentline = len(filename.splitlines())
+    print("What kind of 'if' statement would you like to use")
+    print("1: if statement\n"
+          "2: if-else statement\n")
+    print("Say which number you would like")
+    option = l.listen()
+    #CTNoption = change_to_number(option)
 
+    print("The option selected: ", option)
+    if (option == "1" or option == "one" or option == "won" or option == "wan" or option == "on"):
+        print("Entering regular 'if' statement")
+        print("Please state the conditional you want in the if statement")
+        print("You are writing to line#:", currentline)
+        tempIf = l.listen()
+        condOp = find_operator(tempIf) #if (x > 5)
+        print("if ("+ condOp + ") :")
+        first = "if (" + condOp + ") :\n"
+        print("What would you like to go in the body of the if statement")
+        print ("Options are: \n Variable \n Print string \n print variable  \n While Loop \n Exit If Statement")
+        option1 = l.listen()
+        printstr = ""
+        counter = 0
+        while(option1 != "exit if statement"):
+            if(counter > 0):
+                print("Options are: \n Variable \n Print string \n print variable  \n While Loop \n Exit If Statement")
+                option1 = l.listen()
+            if (option1 == "variable"):
+                print("Entering variable creation")
+                printstr += "\t" + variableDeclaration(filename) + "\n"
+            if(option1 == "print string"):
+                print("Say what string you would like to print")
+                print1 = l.listen()
+                print("Your string is: ", print1)
+                printstr += "\tprint(" + "\"" + print1 + "\"" + ")" + "\n"
+            if (option1 == "print variable"):
+                print("Say which variable you want printed \n")
+                print1 = l.listen()
+                if (print1 == "why"):
+                    print1 = "y"
+                print("Your selected variable is: ", print1)
+                printstr += "\tprint(" + print1 + ")" + "\n"
+            if (option1 == "exit if statement"):
+                print("Exiting the if statement")
+            counter+=1
+        return first + printstr
 
+    elif (option == "2" or option == "two" or option == "to" or option == "too"):
+        print("Entering option 2: if-else statement")
+        print("Please state the conditional you want in the if-else statement")
+        print("You are writing to line#:", currentline)
+
+        tempIf = l.listen()
+        condOp = find_operator(tempIf)  # if (x > 5)
+        print("if (" + condOp + ") :")
+        print("What would you like to have in the body of the 'if' portion")
+        first = "if (" + condOp + ") :\n"
+        print("Options are: \n Variable \n Print string \n print variable  \n  Exit If Statement")
+        option1 = l.listen()
+        printstr = ""
+        counter = 0
+        while (option1 != "exit if statement"):
+            if (counter > 0):
+                print("Options are: \n Variable \n Print string \n print variable \n Exit If Statement")
+                option1 = l.listen()
+            if (option1 == "variable"):
+                print("entered variable")
+                printstr += "\t" + variableDeclaration(filename) + "\n"
+            if (option1 == "print string"):
+                print("Say what string you would like to print")
+                print1 = l.listen()
+                print("you said: ", print1)
+                printstr += "\tprint(" + "\"" + print1 + "\"" + ")" + "\n"
+            if (option1 == "print variable"):
+                print("Say which variable you want printed \n")
+                print1 = l.listen()
+                if (print1 == "why"):
+                    print1 = "y"
+                print("Your selected variable is: ", print1)
+                printstr += "\tprint(" + print1 + ")" + "\n"
+            if (option1 == "exit if statement"):
+                print("Exiting the if statement")
+            counter += 1
+        print("Entering the else portion\n Select and option for the body of the 'else' portion")
+        print("Options are: \n Variable \n Print string \n print variable  \n Exit If Statement")
+        elseop = l.listen()
+        elsestr = ""
+        counter = 0
+        while (elseop != "exit if statement"):
+            if (counter > 0):
+                print("Options are: \n Variable \n Print string \n print variable  \n Exit If Statement")
+                elseop = l.listen()
+            if (elseop == "variable"):
+                print("entered variable")
+                elsestr += "\t" + variableDeclaration(filename) + "\n"
+            if (elseop == "print string"):
+                print("Say what string you would like to print")
+                print1 = l.listen()
+                print("you said: ", print1)
+                elsestr += "\tprint(" + "\"" + print1 + "\"" + ")" + "\n"
+            if (elseop == "print variable"):
+                print("Say which variable you want printed \n")
+                print1 = l.listen()
+                if(print1 == "why"):
+                    print1 = "y"
+                print("Your selected variable is: ", print1)
+                elsestr += "\tprint(" + print1 + ")" + "\n"
+            if (elseop == "exit if statement"):
+                print("Exiting the if statement")
+            counter += 1
+        return first + printstr + "else :\n" + elsestr
