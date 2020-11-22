@@ -1,42 +1,120 @@
 import Listen as l
 
+
 def writeFile(filename):
+
 
     #   Currently a conditional to make sure we aren't messing with our own files. Destroy this later
     if filename == "main.py" or filename == "functions.py" or filename == "listen.py" or filename == "write.py":
         print("CRITICAL ERROR. ATTEMPTING TO OVERWRITE SOURCE CODE. EXITING...")
         exit(1)
-    file = open(filename, "a+")
-    print("Current file looks like:")
-    print(file.read())
+    # if not empty then replace whole file with everything inside file buffer
+
+
+
+
+
+
+
     # Write Loop
     while 1:
+        file = open(filename, "a+")
+
+        print("Current file looks like:")
+        print(file.read())
+
+
         print("What would you like to write?")
         print("Waiting for input...")
         text = l.listen()
 
+        #to break out of infinite loop
         if text == "exit right" or text == "exit write":
             print("Exiting write...")
             file.close()
             break
 
+        #logic for commenting
         if text == "comment" or text == "common" or text =="comments":
             print("Commenting...")
             comment(filename)
+        #logic for variable declaration
         if text == "variable":
             print("Entering variable...")
             assignString = variableDeclaration(filename)
             file.write(assignString)
             file.write("\n")
 
-        if text == "string":
+
+        if text == "string" or text == "strength":
             print("Enter the contents of your string")
             text = l.listen()
-            file.write( "print(" + "\"" + text + "\"" + ")" )
-            print("String has been written too...")
+
+            file.write("print(" + "\"" + text + "\"" + ")")
+            print("String has been written...")
             file.write("\n")
 
-        print("Finished parsing text: " + text)
+        if text == "while loop" or text == "guadalupe":
+            #
+
+
+            print("Enter the conditional of the while loop")
+            text = l.listen()
+            if(text.find("less than")):
+                print("We found it1!!!!!")
+            parsedText = find_operator(text)
+            print(parsedText)
+            file.write( "while " + parsedText + ":" + "\n")
+            while 1:
+                # print, variable, assignment x=7 x= ,
+                print("Entering the body of the while loop, say 'exit while loop' to break out of loop")
+                print("1 - variable declaration/assignment")
+                print("2 - print within the while loop")
+
+                text = l.listen()
+
+                print(text)
+
+                if text == "exit while loop":
+                    print("Exiting while loop....")
+                    break
+
+                if(text == "won" or text == "one" or text == "1"):
+                    print("State your declaration/assignment")
+                    text = l.listen()
+                    bodyText = find_operator(text)
+                    print("Variable has been written")
+
+                    file.write("\t" + bodyText + "\n")
+
+                if(text == "two" or text == "to" or text == "too" or text == "2"):
+                    print("Are you printing a string or a variable?")
+                    print("To exit print say 'exit print'")
+
+
+                    while(1):
+                        text = l.listen()
+                        print("Audio Heard: " + text)
+                        if text == "string":
+                            print("Enter the contents of your string")
+                            text = l.listen()
+                            file.write("\t" + "print(" + "\"" + text + "\"" + ")" + "\n")
+                            print("String has been written...")
+                        if text == "variable":
+                            print("Enter the contents of your variable")
+                            text = l.listen()
+                            file.write("\t" + "print("  + text + ")" + "\n")
+                            print("Variable has been written...")
+                        if text == "exit print":
+                            print("Exiting print....")
+                            break
+
+
+
+    file.close()
+    print("Finished parsing text: " + text)
+
+
 
 
 def comment(filename):
@@ -91,7 +169,7 @@ def editFile(filename):
 
     lineNumber1 = int(lineNumber1)
     while( lineNumber1 > count or lineNumber1 < 1 ):
-        print("Please a valid fileline in the file you wish to edit. (1-n)")
+        print("Please enter a valid file line in the file you wish to edit. (1-", count, ")")
         lineNumber = l.listen()
 
 
@@ -125,20 +203,51 @@ def editFile(filename):
 
     my_file.close()
 
-
+#need to parse speech into actual operators
 def find_operator(edited_line):
-    if(edited_line.find("equals")):
-        return edited_line.replace("equals", "=")
-    elif(edited_line.find("plus")):
-        return edited_line.replace("plus", "+")
-    elif(edited_line.find("minus")):
-        return edited_line.replace("minus", "-")
-    elif(edited_line.find("times")):
-        return edited_line.replace("times", "*")
-    elif(edited_line.find("divided")):
-        return edited_line.replace("divided", "/")
-    elif (edited_line.find("modulus")):
-        return edited_line.replace("modulus", "%")
+    if(edited_line.find("equals") != -1):
+        edited_line = edited_line.replace("equals", "=")
+        print("test1")
+    if(edited_line.find("plus") != -1):
+        edited_line = edited_line.replace("plus", "+")
+        print("test2")
+    if(edited_line.find("minus") != -1):
+        edited_line = edited_line.replace("minus", "-")
+        print("test3")
+    if(edited_line.find("asterisk") != -1 or edited_line.find("astrix") != -1) or edited_line.find("asterix") != -1:
+        edited_line = edited_line.replace("asterisk", "*")
+        edited_line = edited_line.replace("astrix", "*")
+        edited_line = edited_line.replace("asterix", "*")
+        print("test4")
+    if(edited_line.find("divided") != -1):
+        edited_line == edited_line.replace("divided", "/")
+        print("test5")
+    if (edited_line.find("modulus") != -1):
+        edited_line == edited_line.replace("modulus", "%")
+        print("test6")
+    if(edited_line.find("greater than") != -1 and (edited_line.find("or equal to") == -1)):
+        edited_line = edited_line.replace("greater than", ">")
+        print("test7")
+    if ( (edited_line.find("lesson") != -1 or edited_line.find("less than")) and (edited_line.find("or equal to") == -1)):
+        edited_line = edited_line.replace("less than", "<")
+        edited_line = edited_line.replace("lesson", "<")
+        print("test8")
+    if(edited_line.find("equal to") != -1 and (edited_line.find("greater than") == -1) and (edited_line.find("less than") == -1) ):
+        edited_line = edited_line.replace("equal to", "=")
+        print("test9")
+    if (edited_line.find("less than or equal to") != -1):
+        edited_line = edited_line.replace("less than or equal to", "<=")
+        print("test10")
+    if (edited_line.find("greater than or equal to") != -1):
+        edited_line = edited_line.replace("greater than or equal to", ">=")
+        print("test11")
+    if (edited_line.find("not equal") != -1 and (edited_line.find("to") == -1)):
+        edited_line = edited_line.replace("not equal", "!=")
+        print("test12")
+    if (edited_line.find("not equal to") != -1):
+        edited_line = edited_line.replace("not equal to", "!=")
+        print("test13")
+    return edited_line
 
 
 def change_to_number(stringy):
